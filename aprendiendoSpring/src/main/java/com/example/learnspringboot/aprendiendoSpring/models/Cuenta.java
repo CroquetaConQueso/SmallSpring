@@ -20,8 +20,6 @@ public class Cuenta {
     private String ownerCuenta;
     @Column(name="cantidad_cuenta")
     private double cantidadCuenta;
-    @Column(name="en_deuda")
-    private boolean enDeuda;
     @Column(name="password")
     private String contraseña;
     @Column(name="rol")

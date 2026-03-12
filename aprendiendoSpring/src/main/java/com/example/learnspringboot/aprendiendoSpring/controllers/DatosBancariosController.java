@@ -5,7 +5,8 @@ import com.example.learnspringboot.aprendiendoSpring.dto.CuentaRequest;
 import com.example.learnspringboot.aprendiendoSpring.dto.CuentaResponse;
 import com.example.learnspringboot.aprendiendoSpring.errores.ApiErrores;
 import com.example.learnspringboot.aprendiendoSpring.models.Cuenta;
-import com.example.learnspringboot.aprendiendoSpring.service.CuentaService;
+import com.example.learnspringboot.aprendiendoSpring.models.Factura;
+import com.example.learnspringboot.aprendiendoSpring.service.DatosBancariosService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +16,9 @@ import java.util.UUID;
 @RequestMapping("/cuentas")
 @RestController
 @AllArgsConstructor
-public class CuentasController {
+public class DatosBancariosController {
 
-    private CuentaService cuSer;
+    private DatosBancariosService cuSer;
 
     @PostMapping("/login")
     public CuentaResponse logear(@RequestBody CuentaRequest cureq){
@@ -43,6 +44,16 @@ public class CuentasController {
         try {
             return cuSer.devolverTodos(user.getToken(),user.getRol());
         } catch (ApiErrores e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //Whenever we are establishing values passed by a path variable, we need to set them up in such manner.
+    @GetMapping("/facturasClientes/{username}/{rol}")
+    public List<Factura> obtenerFacturasUnCliente(@PathVariable String username, @PathVariable String rol){
+        try{
+            return cuSer.facturasCliente(username,rol);
+        }catch(ApiErrores e){
             throw new RuntimeException(e);
         }
     }
