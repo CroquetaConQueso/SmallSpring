@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 //I need to establish a transaction so it doesn't crash due to the need of JPA to establish transactions.
 @Repository
 @Transactional
-public class CuentaRepoJpa {
+public class CuentaRepo2Jpa {
     @PersistenceContext
     private EntityManager entityManager;
 

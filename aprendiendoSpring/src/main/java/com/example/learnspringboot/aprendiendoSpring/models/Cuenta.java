@@ -22,4 +22,8 @@ public class Cuenta {
     private double cantidadCuenta;
     @Column(name="en_deuda")
     private boolean enDeuda;
+    @Column(name="password")
+    private String contraseña;
+    @Column(name="rol")
+    private String rol;
 }
